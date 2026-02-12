@@ -9,5 +9,5 @@ class Car:
         print(f'you drive the {self.color} {self.model}')
         
     def stop(self):
-        print('stop the car')
+        print(f'stop the {self.color} {self.model}')
         
