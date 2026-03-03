@@ -144,22 +144,38 @@ while running:
                 except ValueError:
                     print("Please enter a valid grade.")
 
+            # Compute each component's weighted score
+            quiz_weighted = round(quiz_avg * 0.40, 2)
+            project_weighted = round(project_avg * 0.30, 2)
+            exam_weighted = round(exam_grade * 0.20, 2)
+            participation_weighted = round(participation_grade * 0.10, 2)
+
             # Compute term grade
-            term_grade = (quiz_avg * 0.40) + (project_avg * 0.30) + (exam_grade * 0.20) + (participation_grade * 0.10)
+            term_grade = quiz_weighted + project_weighted + exam_weighted + participation_weighted
+
+            # Display breakdown
+            print("\n--- " + term + " Grade Breakdown ---")
+            print("  Quiz/Activity Average: " + str(round(quiz_avg, 2)) + " x 40% = " + str(quiz_weighted))
+            print("  Project Average:       " + str(round(project_avg, 2)) + " x 30% = " + str(project_weighted))
+            print("  Exam:                  " + str(exam_grade) + " x 20% = " + str(exam_weighted))
+            print("  Participation:         " + str(participation_grade) + " x 10% = " + str(participation_weighted))
+            print("  " + term + " Grade: " + str(round(term_grade, 2)))
 
             # Store term details in a dictionary
             term_details = {}
             term_details["quiz_grades"] = quiz_list
             term_details["quiz_avg"] = round(quiz_avg, 2)
+            term_details["quiz_weighted"] = quiz_weighted
             term_details["project_grades"] = project_list
             term_details["project_avg"] = round(project_avg, 2)
+            term_details["project_weighted"] = project_weighted
             term_details["exam"] = exam_grade
+            term_details["exam_weighted"] = exam_weighted
             term_details["participation"] = participation_grade
+            term_details["participation_weighted"] = participation_weighted
             term_details["term_grade"] = round(term_grade, 2)
 
             term_grades[term] = term_details
-
-            print(term + " Grade: " + str(round(term_grade, 2)))
 
         # ----- Compute Final Grade -----
         midterm_grade = term_grades["Midterm"]["term_grade"]
