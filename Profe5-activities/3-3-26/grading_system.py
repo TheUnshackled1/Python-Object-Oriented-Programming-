@@ -1,3 +1,4 @@
+
 import getpass
 
 accounts = {
@@ -53,18 +54,8 @@ while running:
     # ===== OPTION 1: Add Student =====
     if choice == "1":
         print("\n--- Add Student ---")
-
-        last_name = ""
-        while last_name == "":
-            last_name = input("Enter Last Name: ")
-            if last_name == "":
-                print("Last Name cannot be empty. Please try again.")
-
-        first_name = ""
-        while first_name == "":
-            first_name = input("Enter First Name: ")
-            if first_name == "":
-                print("First Name cannot be empty. Please try again.")
+        last_name = input("Enter Last Name: ")
+        first_name = input("Enter First Name: ")
 
         # Use a tuple for the student name (immutable)
         student_name = (last_name, first_name)
@@ -88,11 +79,23 @@ while running:
             print("\n--- " + term + " Grades ---")
 
             # Quiz and Activity (40%)
-            quiz_count = int(input("How many quizzes/activities for " + term + "? "))
+            quiz_count = 0
+            while True:
+                try:
+                    quiz_count = int(input("How many quizzes/activities for " + term + "? "))
+                    break
+                except ValueError:
+                    print("Please enter a valid number.")
+
             quiz_list = []
             for i in range(quiz_count):
-                score = float(input("  Enter Quiz/Activity " + str(i + 1) + " grade: "))
-                quiz_list.append(score)
+                while True:
+                    try:
+                        score = float(input("  Enter Quiz/Activity " + str(i + 1) + " grade: "))
+                        quiz_list.append(score)
+                        break
+                    except ValueError:
+                        print("  Please enter a valid grade.")
 
             if len(quiz_list) > 0:
                 quiz_avg = sum(quiz_list) / len(quiz_list)
@@ -100,11 +103,23 @@ while running:
                 quiz_avg = 0
 
             # Project (30%)
-            project_count = int(input("How many projects for " + term + "? "))
+            project_count = 0
+            while True:
+                try:
+                    project_count = int(input("How many projects for " + term + "? "))
+                    break
+                except ValueError:
+                    print("Please enter a valid number.")
+
             project_list = []
             for i in range(project_count):
-                score = float(input("  Enter Project " + str(i + 1) + " grade: "))
-                project_list.append(score)
+                while True:
+                    try:
+                        score = float(input("  Enter Project " + str(i + 1) + " grade: "))
+                        project_list.append(score)
+                        break
+                    except ValueError:
+                        print("  Please enter a valid grade.")
 
             if len(project_list) > 0:
                 project_avg = sum(project_list) / len(project_list)
@@ -112,10 +127,22 @@ while running:
                 project_avg = 0
 
             # Exam (20%)
-            exam_grade = float(input("Enter Exam grade for " + term + ": "))
+            exam_grade = 0
+            while True:
+                try:
+                    exam_grade = float(input("Enter Exam grade for " + term + ": "))
+                    break
+                except ValueError:
+                    print("Please enter a valid grade.")
 
             # Class Participation (10%)
-            participation_grade = float(input("Enter Class Participation grade for " + term + ": "))
+            participation_grade = 0
+            while True:
+                try:
+                    participation_grade = float(input("Enter Class Participation grade for " + term + ": "))
+                    break
+                except ValueError:
+                    print("Please enter a valid grade.")
 
             # Compute term grade
             term_grade = (quiz_avg * 0.40) + (project_avg * 0.30) + (exam_grade * 0.20) + (participation_grade * 0.10)
