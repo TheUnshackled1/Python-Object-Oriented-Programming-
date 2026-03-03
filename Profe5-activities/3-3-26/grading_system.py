@@ -92,8 +92,11 @@ while running:
                 while True:
                     try:
                         score = float(input("  Enter Quiz/Activity " + str(i + 1) + " grade: "))
-                        quiz_list.append(score)
-                        break
+                        if score < 0 or score > 100:
+                            print("  Grade must be between 0 and 100.")
+                        else:
+                            quiz_list.append(score)
+                            break
                     except ValueError:
                         print("  Please enter a valid grade.")
 
@@ -116,8 +119,11 @@ while running:
                 while True:
                     try:
                         score = float(input("  Enter Project " + str(i + 1) + " grade: "))
-                        project_list.append(score)
-                        break
+                        if score < 0 or score > 100:
+                            print("  Grade must be between 0 and 100.")
+                        else:
+                            project_list.append(score)
+                            break
                     except ValueError:
                         print("  Please enter a valid grade.")
 
@@ -131,7 +137,10 @@ while running:
             while True:
                 try:
                     exam_grade = float(input("Enter Exam grade for " + term + ": "))
-                    break
+                    if exam_grade < 0 or exam_grade > 100:
+                        print("Grade must be between 0 and 100.")
+                    else:
+                        break
                 except ValueError:
                     print("Please enter a valid grade.")
 
@@ -140,7 +149,10 @@ while running:
             while True:
                 try:
                     participation_grade = float(input("Enter Class Participation grade for " + term + ": "))
-                    break
+                    if participation_grade < 0 or participation_grade > 100:
+                        print("Grade must be between 0 and 100.")
+                    else:
+                        break
                 except ValueError:
                     print("Please enter a valid grade.")
 
