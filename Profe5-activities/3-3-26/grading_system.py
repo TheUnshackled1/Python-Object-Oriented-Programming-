@@ -1,3 +1,5 @@
+import getpass
+
 accounts = {
     "admin": "admin123",
     "teacher": "teacher123"
@@ -14,7 +16,7 @@ attempts = 3
 while attempts > 0:
     print("\n--- Login ---")
     username = input("Enter username: ")
-    password = input("Enter password: ")
+    password = getpass.getpass("Enter password: ")
 
     if username in accounts and accounts[username] == password:
         print("Login successful! Welcome, " + username + "!")
@@ -51,8 +53,18 @@ while running:
     # ===== OPTION 1: Add Student =====
     if choice == "1":
         print("\n--- Add Student ---")
-        last_name = input("Enter Last Name: ")
-        first_name = input("Enter First Name: ")
+
+        last_name = ""
+        while last_name == "":
+            last_name = input("Enter Last Name: ")
+            if last_name == "":
+                print("Last Name cannot be empty. Please try again.")
+
+        first_name = ""
+        while first_name == "":
+            first_name = input("Enter First Name: ")
+            if first_name == "":
+                print("First Name cannot be empty. Please try again.")
 
         # Use a tuple for the student name (immutable)
         student_name = (last_name, first_name)
