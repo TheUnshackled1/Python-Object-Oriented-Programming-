@@ -195,7 +195,6 @@ while running:
 
         final_grade = (midterm_grade * 0.40) + (endterm_grade * 0.60)
         final_grade = round(final_grade, 2)
-
         # Determine remarks using conditionals
         if final_grade >= 75:
             remarks = "PASSED"
