@@ -373,23 +373,14 @@ def main():
 
                     selected_student = students[s_choice - 1]
 
-                    # Choose term
-                    print("\n  --- Select Term ---")
-                    print("  [1] Midterm (45%)")
-                    print("  [2] Endterm (55%)")
-                    while True:
-                        t_choice = input("  Enter choice: ").strip()
-                        if t_choice == "1":
-                            term = "Midterm"
-                            break
-                        elif t_choice == "2":
-                            term = "Endterm"
-                            break
-                        else:
-                            print("  Invalid choice. Please enter 1 or 2.")
+                    # Automatically input grades for both Midterm and Endterm
+                    for term in ["Midterm", "Endterm"]:
+                        selected_student.input_grades(term)
+                        print(f"\n  {term} grades saved for {selected_student.get_full_name_str()}!")
 
-                    selected_student.input_grades(term)
-                    print(f"\n  {term} grades saved for {selected_student.get_full_name_str()}!")
+                    # Automatically compute and display final grade after both terms
+                    selected_student.compute_final_grade()
+                    selected_student.display_grades()
 
                 elif action == "3":
                     # Compute and display grades
