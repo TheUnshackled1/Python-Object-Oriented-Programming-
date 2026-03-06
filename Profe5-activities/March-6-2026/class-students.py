@@ -237,12 +237,21 @@ class AuthSystem:
 
         while True:
             password = input("  Enter password: ").strip()
+            if not password:
+                print("  Password cannot be empty.")
+                continue
             if len(password) < 4:
                 print("  Password must be at least 4 characters.")
                 continue
             break
 
-        student_name = input("  Enter student's full name: ").strip()
+        while True:
+            student_name = input("  Enter student's full name: ").strip()
+            if not student_name:
+                print("  Student name cannot be empty.")
+                continue
+            break
+
         self.users[username] = (self._hash_password(password), student_name)
         print(f"\n  Registration successful! Welcome, {student_name}.")
 
@@ -253,8 +262,19 @@ class AuthSystem:
         print(f"{'='*50}")
 
         for attempt in range(3):
-            username = input("  Enter username: ").strip()
-            password = input("  Enter password: ").strip()
+            while True:
+                username = input("  Enter username: ").strip()
+                if not username:
+                    print("  Username cannot be empty.")
+                    continue
+                break
+
+            while True:
+                password = input("  Enter password: ").strip()
+                if not password:
+                    print("  Password cannot be empty.")
+                    continue
+                break
 
             if username in self.users:
                 stored_hash, student_name = self.users[username]
