@@ -9,7 +9,7 @@ class Company:
 
     WORKING_DAYS_PER_MONTH = 22
     HOURS_PER_DAY = 8
-    OVERTIME_PREMIUM = 0.10  # 10% OT premium
+    OVERTIME_PREMIUM = 0.10
     BONUS_RATE = 0.15
 
     # 2026 Deduction Rates
