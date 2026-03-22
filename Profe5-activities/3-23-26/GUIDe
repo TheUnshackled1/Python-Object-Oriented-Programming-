@@ -1,0 +1,43 @@
+Base monthly
+1000 + 1000 = 2000
+
+Total work hours/month
+22 × 8 = 176
+
+Hourly rate
+2000 ÷ 176 = 11.363636...
+
+Overtime pay
+11.363636... × 3 × 1.10 = 37.50
+
+Bonus
+2000 × 0.15 = 300.00
+
+Gross earnings
+2000 + 37.50 + 300.00 = 2337.50
+
+SSS
+2000 × 0.05 = 100.00
+
+PhilHealth
+2000 × 0.025 = 50.00
+
+Pag-IBIG
+2000 × 0.02 = 40.00
+
+Cap check
+min(40, 100) = 40
+
+Total deductions
+100 + 50 + 40 = 190.00
+
+Net pay
+2337.50 - 190.00 = 2147.50
+
+Final answers:
+
+Overtime = PHP 37.50
+Bonus = PHP 300.00
+Gross = PHP 2,337.50
+Total deductions = PHP 190.00
+Net pay = PHP 2,147.50
