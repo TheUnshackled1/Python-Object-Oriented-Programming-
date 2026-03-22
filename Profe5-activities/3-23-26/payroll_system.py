@@ -14,7 +14,7 @@ class Company:
 
     # 2026 Deduction Rates
     SSS_EMPLOYEE_RATE = 0.05
-    PHILHEALTH_EMPLOYEE_RATE = 0.025  # 2.5% employee share (of 5% total)
+    PHILHEALTH_EMPLOYEE_RATE = 0.025
     PAGIBIG_RATE = 0.02  # 2% of salary
     PAGIBIG_MAX = 100.00  # Fixed cap at 100 pesos
 
