@@ -10,7 +10,7 @@ class Company:
     WORKING_DAYS_PER_MONTH = 22
     HOURS_PER_DAY = 8
     OVERTIME_PREMIUM = 0.10  # 10% OT premium
-    BONUS_RATE = 0.15  # 15% bonus
+    BONUS_RATE = 0.15
 
     # 2026 Deduction Rates
     SSS_EMPLOYEE_RATE = 0.05  # 5% employee share (of 15% total)
