@@ -1,11 +1,11 @@
 """
 Philippine Payroll System (2026 Rates)
-OOP Implementation with Company, Person, and Role Subclasses
+OOP Implementation - Company as Base Class
 """
 
 
-class Person:
-    """Base class for all personnel - contains shared payroll logic"""
+class Company:
+    """Base class with all payroll logic - Employee, Supervisor, Manager inherit from this"""
 
     WORKING_DAYS_PER_MONTH = 22
     HOURS_PER_DAY = 8
@@ -23,7 +23,7 @@ class Person:
         self.salary_15th = salary_15th
         self.salary_30th = salary_30th
         self.overtime_hours = overtime_hours
-        self.role = "Person"
+        self.role = "Company"
 
     # --- EARNINGS METHODS ---
 
@@ -102,68 +102,28 @@ class Person:
         print("=" * 50)
 
 
-class Employee(Person):
-    """Regular Employee subclass"""
+class Employee(Company):
+    """Employee subclass - inherits all payroll logic from Company"""
 
     def __init__(self, name: str, salary_15th: float, salary_30th: float, overtime_hours: float = 0):
         super().__init__(name, salary_15th, salary_30th, overtime_hours)
         self.role = "Employee"
 
 
-class Supervisor(Person):
-    """Supervisor subclass - inherits all payroll logic"""
+class Supervisor(Company):
+    """Supervisor subclass - inherits all payroll logic from Company"""
 
     def __init__(self, name: str, salary_15th: float, salary_30th: float, overtime_hours: float = 0):
         super().__init__(name, salary_15th, salary_30th, overtime_hours)
         self.role = "Supervisor"
 
 
-class Manager(Person):
-    """Manager subclass - inherits all payroll logic"""
+class Manager(Company):
+    """Manager subclass - inherits all payroll logic from Company"""
 
     def __init__(self, name: str, salary_15th: float, salary_30th: float, overtime_hours: float = 0):
         super().__init__(name, salary_15th, salary_30th, overtime_hours)
         self.role = "Manager"
-
-
-class Company:
-    """Container class that holds all personnel"""
-
-    def __init__(self, name: str):
-        self.name = name
-        self.employees: list[Employee] = []
-        self.supervisors: list[Supervisor] = []
-        self.managers: list[Manager] = []
-
-    def add_employee(self, employee: Employee):
-        self.employees.append(employee)
-
-    def add_supervisor(self, supervisor: Supervisor):
-        self.supervisors.append(supervisor)
-
-    def add_manager(self, manager: Manager):
-        self.managers.append(manager)
-
-    def get_all_personnel(self) -> list[Person]:
-        """Return all personnel in the company"""
-        return self.employees + self.supervisors + self.managers
-
-    def total_payroll(self) -> float:
-        """Calculate total company payroll (net pays)"""
-        return sum(person.calculate_net_pay() for person in self.get_all_personnel())
-
-    def display_all_payslips(self):
-        """Display payslips for all personnel"""
-        print(f"\n{'#' * 60}")
-        print(f"  {self.name.upper()} - PAYROLL SUMMARY")
-        print(f"{'#' * 60}")
-
-        for person in self.get_all_personnel():
-            person.display_payslip()
-
-        print(f"\n{'=' * 50}")
-        print(f"TOTAL COMPANY PAYROLL: PHP {self.total_payroll():>12,.2f}")
-        print(f"{'=' * 50}")
 
 
 # --- MAIN PROGRAM WITH USER INPUT ---
@@ -205,7 +165,7 @@ def main():
     print("=" * 60)
 
     company_name = input("\nEnter company name: ")
-    company = Company(company_name)
+    personnel = []
 
     # Get number of each role
     print("\nHow many personnel to add?")
@@ -217,22 +177,32 @@ def main():
     for i in range(num_employees):
         print(f"\n[Employee {i + 1} of {num_employees}]")
         employee = create_person_from_input(Employee, "Employee")
-        company.add_employee(employee)
+        personnel.append(employee)
 
     # Add Supervisors
     for i in range(num_supervisors):
         print(f"\n[Supervisor {i + 1} of {num_supervisors}]")
         supervisor = create_person_from_input(Supervisor, "Supervisor")
-        company.add_supervisor(supervisor)
+        personnel.append(supervisor)
 
     # Add Managers
     for i in range(num_managers):
         print(f"\n[Manager {i + 1} of {num_managers}]")
         manager = create_person_from_input(Manager, "Manager")
-        company.add_manager(manager)
+        personnel.append(manager)
 
     # Display all payslips
-    company.display_all_payslips()
+    print(f"\n{'#' * 60}")
+    print(f"  {company_name.upper()} - PAYROLL SUMMARY")
+    print(f"{'#' * 60}")
+
+    for person in personnel:
+        person.display_payslip()
+
+    total_payroll = sum(p.calculate_net_pay() for p in personnel)
+    print(f"\n{'=' * 50}")
+    print(f"TOTAL COMPANY PAYROLL: PHP {total_payroll:>12,.2f}")
+    print(f"{'=' * 50}")
 
 
 if __name__ == "__main__":
