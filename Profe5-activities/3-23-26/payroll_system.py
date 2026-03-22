@@ -173,9 +173,9 @@ def main():
     num_managers = 1
 
     print("\nHow many personnel to add?")
-    print(f"Number of Employees: {num_employees}")
-    print(f"Number of Supervisors: {num_supervisors}")
-    print(f"Number of Managers: {num_managers}")
+    print(f"Number of Employee Personnel: {num_employees}")
+    print(f"Number of Supervisor Personnel: {num_supervisors}")
+    print(f"Number of Manager Personnel: {num_managers}")
 
     # Add Employees
     for i in range(num_employees):
