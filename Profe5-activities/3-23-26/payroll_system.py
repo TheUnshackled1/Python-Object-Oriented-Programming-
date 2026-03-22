@@ -1,5 +1,5 @@
 """
-Philippine Payroll System (2026 Rates)
+Tyrone Payroll System (2026 Rates)
 OOP Implementation - Company as Base Class
 """
 
