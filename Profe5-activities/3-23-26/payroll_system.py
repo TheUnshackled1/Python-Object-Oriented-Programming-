@@ -16,7 +16,7 @@ class Company:
     SSS_EMPLOYEE_RATE = 0.05
     PHILHEALTH_EMPLOYEE_RATE = 0.025
     PAGIBIG_RATE = 0.02 
-    PAGIBIG_MAX = 100.00  # Fixed cap at 100 pesos
+    PAGIBIG_MAX = 100.00
 
     def __init__(self, name: str, salary_15th: float, salary_30th: float, overtime_hours: float = 0):
         self.name = name
