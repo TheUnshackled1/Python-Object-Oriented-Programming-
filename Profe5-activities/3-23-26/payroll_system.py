@@ -167,11 +167,15 @@ def main():
     company_name = input("\nEnter company name: ")
     personnel = []
 
-    # Get number of each role
+    # Fixed personnel count: 1 for each role
+    num_employees = 1
+    num_supervisors = 1
+    num_managers = 1
+
     print("\nHow many personnel to add?")
-    num_employees = get_int_input("Number of Employees: ")
-    num_supervisors = get_int_input("Number of Supervisors: ")
-    num_managers = get_int_input("Number of Managers: ")
+    print(f"Number of Employees: {num_employees}")
+    print(f"Number of Supervisors: {num_supervisors}")
+    print(f"Number of Managers: {num_managers}")
 
     # Add Employees
     for i in range(num_employees):
