@@ -117,8 +117,8 @@ class Company:
         print("\n2026 DEDUCTIONS:")
         print(f"  SSS (4.5%):         PHP {self.calculate_sss():>12,.2f}")
         print(f"  PhilHealth (2.5%):  PHP {self.calculate_philhealth():>12,.2f}")
-        print(f"  Pag-IBIG:           PHP {self.calculate_pagibig():>12,.2f}")
-        print(f"  Income Tax:         PHP {self.calculate_income_tax():>12,.2f}")
+        print(f"  Pag-IBIG (2%):      PHP {self.calculate_pagibig():>12,.2f}")
+        print(f"  Income Tax (2026, max 30% - Monthly): PHP {self.calculate_income_tax():>12,.2f}")
         print(f"  TOTAL DEDUCTIONS:   PHP {self.calculate_total_deductions():>12,.2f}")
 
         print("-" * 50)
