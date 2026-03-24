@@ -16,31 +16,32 @@ Bonus
 Gross earnings
 2000 + 37.50 + 300.00 = 2337.50
 
-SSS
-2000 × 0.05 = 100.00
+SSS (4.5%, max ₱900)
+2000 × 0.045 = 90.00
 
-PhilHealth
+PhilHealth (2.5%)
 2000 × 0.025 = 50.00
 
-Pag-IBIG
+Pag-IBIG (1% if ≤₱1,500, else 2%, max ₱200)
+2000 > 1500 → use 2%
 2000 × 0.02 = 40.00
 
 Cap check
-min(40, 100) = 40
+min(40, 200) = 40
 
 Taxable income (for tax computation)
-2337.50 - 100 - 50 - 40 = 2147.50
+2337.50 - 90 - 50 - 40 = 2157.50
 
-Income Tax (2026 Graduated Tax, max 35% - Monthly)
-Monthly taxable = 2147.50
-Since 2147.50 < 20,833.33 → 0% bracket
+Income Tax (2026, max 30% - Monthly)
+Monthly taxable = 2157.50
+Since 2157.50 < 20,833 → 0% bracket
 Income tax = PHP 0.00
 
 Total deductions
-100 + 50 + 40 + 0 = 190.00
+90 + 50 + 40 + 0 = 180.00
 
 Net pay
-2337.50 - 190.00 = 2147.50
+2337.50 - 180.00 = 2157.50
 
 Final answers:
 
@@ -48,5 +49,5 @@ Overtime = PHP 37.50
 Bonus = PHP 300.00
 Gross = PHP 2,337.50
 Income Tax = PHP 0.00
-Total deductions = PHP 190.00
-Net pay = PHP 2,147.50
+Total deductions = PHP 180.00
+Net pay = PHP 2,157.50
