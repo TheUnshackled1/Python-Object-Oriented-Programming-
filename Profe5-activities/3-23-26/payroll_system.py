@@ -12,14 +12,10 @@ class Company:
     OVERTIME_PREMIUM = 0.10
     BONUS_RATE = 0.15
 
-    # 2026 Deduction Rates (Sprout Solutions)
+    # 2026 Deduction Rates (Simplified)
     SSS_EMPLOYEE_RATE = 0.045
-    SSS_MAX = 900.00
     PHILHEALTH_EMPLOYEE_RATE = 0.025
-    PAGIBIG_RATE_LOW = 0.01
-    PAGIBIG_RATE_HIGH = 0.02
-    PAGIBIG_THRESHOLD = 1500.00
-    PAGIBIG_MAX = 200.00
+    PAGIBIG_RATE = 0.02
 
     # 2026 Income Tax Brackets (Monthly, max 30%)
     # 0% for ≤₱20,833; 15%-30% on excess
@@ -66,21 +62,16 @@ class Company:
     # --- 2026 DEDUCTION METHODS ---
 
     def calculate_sss(self) -> float:
-        """SSS: Base × 4.5% (employee share), max ₱900"""
-        contribution = self.base_monthly_salary * self.SSS_EMPLOYEE_RATE
-        return min(contribution, self.SSS_MAX)
+        """SSS: Base × 4.5%"""
+        return self.base_monthly_salary * self.SSS_EMPLOYEE_RATE
 
     def calculate_philhealth(self) -> float:
         """PhilHealth: Base × 0.025 (employee's half of 5%)"""
         return self.base_monthly_salary * self.PHILHEALTH_EMPLOYEE_RATE
 
     def calculate_pagibig(self) -> float:
-        """Pag-IBIG: 1% if ≤₱1,500, else 2%, max ₱200"""
-        if self.base_monthly_salary <= self.PAGIBIG_THRESHOLD:
-            contribution = self.base_monthly_salary * self.PAGIBIG_RATE_LOW
-        else:
-            contribution = self.base_monthly_salary * self.PAGIBIG_RATE_HIGH
-        return min(contribution, self.PAGIBIG_MAX)
+        """Pag-IBIG: Base × 2%"""
+        return self.base_monthly_salary * self.PAGIBIG_RATE
 
     def calculate_taxable_income(self) -> float:
         """Taxable Income = Gross Earnings - SSS - PhilHealth - Pag-IBIG"""

@@ -16,18 +16,14 @@ Bonus
 Gross earnings
 2000 + 37.50 + 300.00 = 2337.50
 
-SSS (4.5%, max ₱900)
+SSS (4.5%)
 2000 × 0.045 = 90.00
 
 PhilHealth (2.5%)
 2000 × 0.025 = 50.00
 
-Pag-IBIG (1% if ≤₱1,500, else 2%, max ₱200)
-2000 > 1500 → use 2%
+Pag-IBIG (2%)
 2000 × 0.02 = 40.00
-
-Cap check
-min(40, 200) = 40
 
 Taxable income (for tax computation)
 2337.50 - 90 - 50 - 40 = 2157.50
