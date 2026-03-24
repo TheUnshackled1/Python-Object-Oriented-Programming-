@@ -12,20 +12,23 @@ class Company:
     OVERTIME_PREMIUM = 0.10
     BONUS_RATE = 0.15
 
-    # 2026 Deduction Rates
-    SSS_EMPLOYEE_RATE = 0.05
+    # 2026 Deduction Rates (Sprout Solutions)
+    SSS_EMPLOYEE_RATE = 0.045
+    SSS_MAX = 900.00
     PHILHEALTH_EMPLOYEE_RATE = 0.025
-    PAGIBIG_RATE = 0.02
-    PAGIBIG_MAX = 100.00
+    PAGIBIG_RATE_LOW = 0.01
+    PAGIBIG_RATE_HIGH = 0.02
+    PAGIBIG_THRESHOLD = 1500.00
+    PAGIBIG_MAX = 200.00
 
-    # 2026 Income Tax Brackets (Annual, max 35%)
+    # 2026 Income Tax Brackets (Monthly, max 30%)
+    # 0% for ≤₱20,833; 15%-30% on excess
     TAX_BRACKETS = [
-        (250000, 0, 0.00),
-        (400000, 0, 0.15),
-        (800000, 22500, 0.20),
-        (2000000, 102500, 0.25),
-        (8000000, 402500, 0.30),
-        (float('inf'), 2202500, 0.35),
+        (20833.00, 0, 0.00),
+        (33333.00, 0, 0.15),
+        (66667.00, 1875.00, 0.20),
+        (166667.00, 8541.67, 0.25),
+        (float('inf'), 33541.67, 0.30),
     ]
 
     def __init__(self, name: str, salary_15th: float, salary_30th: float, overtime_hours: float = 0):
@@ -63,16 +66,20 @@ class Company:
     # --- 2026 DEDUCTION METHODS ---
 
     def calculate_sss(self) -> float:
-        """SSS: Base × 0.05 (employee's 5% share)"""
-        return self.base_monthly_salary * self.SSS_EMPLOYEE_RATE
+        """SSS: Base × 4.5% (employee share), max ₱900"""
+        contribution = self.base_monthly_salary * self.SSS_EMPLOYEE_RATE
+        return min(contribution, self.SSS_MAX)
 
     def calculate_philhealth(self) -> float:
         """PhilHealth: Base × 0.025 (employee's half of 5%)"""
         return self.base_monthly_salary * self.PHILHEALTH_EMPLOYEE_RATE
 
     def calculate_pagibig(self) -> float:
-        """Pag-IBIG: 2% of salary, capped at 100 pesos"""
-        contribution = self.base_monthly_salary * self.PAGIBIG_RATE
+        """Pag-IBIG: 1% if ≤₱1,500, else 2%, max ₱200"""
+        if self.base_monthly_salary <= self.PAGIBIG_THRESHOLD:
+            contribution = self.base_monthly_salary * self.PAGIBIG_RATE_LOW
+        else:
+            contribution = self.base_monthly_salary * self.PAGIBIG_RATE_HIGH
         return min(contribution, self.PAGIBIG_MAX)
 
     def calculate_taxable_income(self) -> float:
@@ -80,15 +87,13 @@ class Company:
         return self.calculate_gross_earnings() - self.calculate_sss() - self.calculate_philhealth() - self.calculate_pagibig()
 
     def calculate_income_tax(self) -> float:
-        """2026 Graduated Income Tax (max 35%) - computed monthly from annual brackets"""
+        """2026 Graduated Income Tax (max 35%) - monthly computation"""
         monthly_taxable = self.calculate_taxable_income()
-        annual_taxable = monthly_taxable * 12
 
         previous_limit = 0
         for limit, base_tax, rate in self.TAX_BRACKETS:
-            if annual_taxable <= limit:
-                annual_tax = base_tax + (annual_taxable - previous_limit) * rate
-                return annual_tax / 12
+            if monthly_taxable <= limit:
+                return base_tax + (monthly_taxable - previous_limit) * rate
             previous_limit = limit
         return 0.0
 
@@ -119,7 +124,7 @@ class Company:
         print(f"  GROSS EARNINGS:     PHP {self.calculate_gross_earnings():>12,.2f}")
 
         print("\n2026 DEDUCTIONS:")
-        print(f"  SSS (5%):           PHP {self.calculate_sss():>12,.2f}")
+        print(f"  SSS (4.5%):         PHP {self.calculate_sss():>12,.2f}")
         print(f"  PhilHealth (2.5%):  PHP {self.calculate_philhealth():>12,.2f}")
         print(f"  Pag-IBIG:           PHP {self.calculate_pagibig():>12,.2f}")
         print(f"  Income Tax:         PHP {self.calculate_income_tax():>12,.2f}")

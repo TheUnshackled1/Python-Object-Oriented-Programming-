@@ -31,9 +31,9 @@ min(40, 100) = 40
 Taxable income (for tax computation)
 2337.50 - 100 - 50 - 40 = 2147.50
 
-Income Tax (2026 Graduated Tax, max 35%)
-Annual taxable = 2147.50 × 12 = 25,770.00
-Since 25,770 < 250,000 → 0% bracket
+Income Tax (2026 Graduated Tax, max 35% - Monthly)
+Monthly taxable = 2147.50
+Since 2147.50 < 20,833.33 → 0% bracket
 Income tax = PHP 0.00
 
 Total deductions
