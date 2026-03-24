@@ -28,8 +28,16 @@ Pag-IBIG
 Cap check
 min(40, 100) = 40
 
+Taxable income (for tax computation)
+2337.50 - 100 - 50 - 40 = 2147.50
+
+Income Tax (2026 Graduated Tax, max 35%)
+Annual taxable = 2147.50 × 12 = 25,770.00
+Since 25,770 < 250,000 → 0% bracket
+Income tax = PHP 0.00
+
 Total deductions
-100 + 50 + 40 = 190.00
+100 + 50 + 40 + 0 = 190.00
 
 Net pay
 2337.50 - 190.00 = 2147.50
@@ -39,5 +47,6 @@ Final answers:
 Overtime = PHP 37.50
 Bonus = PHP 300.00
 Gross = PHP 2,337.50
+Income Tax = PHP 0.00
 Total deductions = PHP 190.00
 Net pay = PHP 2,147.50
